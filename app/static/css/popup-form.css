@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+:root{
+    --todo-col: rgba(160, 188, 194, 1);
+    --progress-col: rgba(255, 234, 181, 1);
+    --complete-col: rgba(218, 229, 208, 1);
+    --blue-fade: rgba(160, 188, 194, 0.36);
+    --cream-fade: rgba(254, 244, 220, 1);
+    --green-fade: rgba(218, 229, 208, 0.53);
+    --header-col: rgb(255, 249, 234);
+
+}
+
+button, input[type=submit] {
+    cursor: pointer;
+}
+
+#newtask-form {
+    display: none;
+    z-index: 4;
+    position: absolute;
+    top: 25%;
+    left: 40%;
+    background: var(--header-col);
+    width: 20%;
+    height: 40%;
+    padding: 0 20px;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.labelandfield {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+
+}
+
+select, input[type=date] {
+    height: 25px;
+    width: 110px;
+}
+
+input[type=date]{
+    text-align: center;
+}
+
+textarea {
+    padding: 10px;
+}
+
+#newtask-form input[type="submit"] {
+    background: black;
+    color: white;
+    text-transform: uppercase;
+    padding: 10px;
+    font-weight: 700;
+    margin-bottom: 5%;
+}
+
+.form-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#closeform {
+    height: 20px;
+    width: 20px;
+    background: black;
+    color: white;
+    padding: 0;
+    font-size: 1em;
+    font-weight: 600;
+}
+
+#modal {
+    display: none;
+    z-index:3;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}

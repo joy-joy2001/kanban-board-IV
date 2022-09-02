@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+:root{
+    --todo-col: rgba(160, 188, 194, 1);
+    --progress-col: rgba(255, 234, 181, 1);
+    --complete-col: rgba(218, 229, 208, 1);
+}
+
+#main-header {
+    display: flex;
+    justify-content: space-between;
+    height: 8vh;
+    background: #FFF9EA;
+    box-shadow: 0px 4px 9px -3px rgba(0, 0, 0, 0.1);
+    padding: 0 32px;
+}
+
+#logo-header {
+    display: flex;
+    gap: .5em;
+    font-size: 1em;
+    width: fit-content;
+    height: inherit;
+}
+
+#logo-header a {
+    align-self: center;
+}
+
+#logo {
+    height: 60px;
+    align-self: center;
+}
+
+#username-display {
+    align-self: center;
+    font-weight: 500;
+}
+
+nav {
+/*    width: 15vw;*/
+    text-transform: uppercase;
+    display: flex;
+    justify-content: space-between;
+    /* height: 70px; */
+    align-items: center;
+    /* margin-right: 2em; */
+    /* margin-top: -1em; */
+}
+
+nav a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: black;
+    font-size: 1em;
+    font-weight: 700;    
+}

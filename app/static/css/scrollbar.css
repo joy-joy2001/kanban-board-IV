@@ -1,0 +1,42 @@
+:root{
+    --todo-col: rgba(160, 188, 194, 1);
+    --progress-col: rgba(255, 234, 181, 1);
+    --complete-col: rgba(218, 229, 208, 1);
+    --blue-fade: rgba(160, 188, 194, 0.36);
+    --cream-fade: rgba(254, 244, 220, 1);
+    --green-fade: rgba(218, 229, 208, 0.53);
+}
+
+::-webkit-scrollbar {
+    width: 1em;
+    /* height: 4em; */
+}
+
+::-webkit-scrollbar-track {
+    margin-block: 5em 1em;
+    background: inherit;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    width: 2em;
+    border-radius: 10px;
+}
+
+#todo-panel::-webkit-scrollbar-thumb {
+    background-color: rgb(36, 63, 69);
+    border: 5px solid var(--todo-col);
+
+}
+
+#inprogress-panel::-webkit-scrollbar-thumb {
+    background-color: hsl(43, 100%, 75%);
+    border: 5px solid var(--progress-col);
+
+}
+
+#complete-panel::-webkit-scrollbar-thumb {
+    background-color: hsl(91, 29%, 66%);
+    border: 5px solid var(--complete-col);
+}
+    

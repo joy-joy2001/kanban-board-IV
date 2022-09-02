@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CARPE · {% block title %}Home{% endblock %}</title>
+    {% block head %}
+    <!--  use the super function to avoid overriding the previous stylesheets and to allow other stylesheets to be added  -->
+    <link href=" {{url_for('static', filename = 'css/styles.css')}} " rel="stylesheet">
+    <link href=" {{url_for('static', filename = 'css/home.css')}} " rel="stylesheet">
+    <link href=" {{url_for('static', filename = 'css/main-nav.css')}} " rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename = 'img/apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename = 'img/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename = 'img/favicon-16x16.png') }}">
+    <link rel="manifest" href="{{ url_for('static', filename = 'img/site.webmanifest') }}">
+    {% endblock %}
+</head>
+<body>
+<!-- Consistent block for home, login and sign-up (also for kanban tbh)-->
+    <header id="main-header">
+        <div id="logo-header">
+            <a href="{{ url_for('home') }}"><img id="logo" src="{{ url_for('static', filename = 'img/infinity-logo.png') }}" alt="infinity-logo"></a>
+            <div id="username-display">
+                <p>CARPE DIEM</p>
+            </div>
+        </div>
+        <nav id="navbar">
+            <a href="{{ url_for('home') }}">home</a>
+
+
+            {% if current_user.is_authenticated %}
+                <a href="{{ url_for('kanban', username=current_user.username) }}">kanban</a>
+                <a href="{{ url_for('logout') }}">logout</a>
+            {% endif %}
+        </nav>
+    </header>
+
+    <main id="home-main">
+        <!-- Consistent block for home, login and signup-->
+        <section id="carpediem-hero">
+            <h1>CARPE<br>DIEM</h1>
+            <h3>seize today, it won't come again</h3>
+
+
+            <div class="carpehome-btns">
+                {% if not current_user.is_authenticated %}
+                    <a id="login-btn" class="home-btn" href="{{ url_for('login') }}">LOGIN</a>
+                    <a id="register-btn" class="home-btn" href="{{ url_for('register') }}">REGISTER</a>
+                {% else %}
+                    <a id="signout-btn" class="home-btn" href="{{ url_for('logout') }}">LOGOUT</a>
+                {% endif %}
+            </div>
+
+        </section>
+        <!-- Consistent block for home, login and signup-->
+
+        <!-- variable for home, login and signup -->
+        {% block variable_hero_section %}
+        <section id="about-hero" class="variable-hero">
+            <img id="crop-image" src="{{ url_for('static', filename = 'img/flying-birds.gif') }}" alt="black-flying-birds-gif">
+            {% if current_user.is_authenticated %}
+                <h3>WELCOME&nbsp;&nbsp;&nbsp;<span style="font-weight: 500">{{ current_user.username }}</span></h3>
+                <p>Manage your time and workflows with CARPE DIEM - Your tomorrow begins today.</p>
+            {% else %}
+                <h3>ABOUT</h3>
+                <p>Manage time and workflows with this open source management tool inspired by the popular kanban framework</p>
+            {% endif %}
+
+        </section>
+        {% endblock %}
+        <!-- variable for home, login and signup -->
+
+    </main>
+</body>
+
+</html>

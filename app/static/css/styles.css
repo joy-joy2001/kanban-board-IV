@@ -1,0 +1,208 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+:root{
+    --header-col: rgb(255, 249, 234);
+    --todo-col: rgba(160, 188, 194, 1);
+    --progress-col: rgba(255, 234, 181, 1);
+    --complete-col: rgba(218, 229, 208, 1);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    background: #FEF4DC;
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+}
+
+#kanban-main {
+    margin: auto;
+    padding-top: 2em;
+    height: 92vh;
+    width: 95vw;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* SIDE-BOARD DASHBOARD */
+
+#side-board {
+    width: 25%;
+    height: 100%;
+}
+
+    /* header section */
+#kb-board-header h1{
+    margin: 0;
+    text-transform: uppercase;
+    font-weight: 900;
+    font-size: 4vw;
+    letter-spacing: -0.02em;
+    line-height: 4vw;
+}
+
+#kb-board-header p{
+    font-weight: 400;
+    font-size: 1.5vw;
+    margin-top: 3px;
+    margin-bottom: 25px;
+}
+
+
+
+    /* today's quote */
+/* #today-mantra {
+    text-align: center;
+    padding-right: 30px;
+}
+#today-mantra p{
+    font-style: italic;
+    font-weight: 700;
+    font-size: 1.1vw;
+    margin: 0;
+}
+
+#today-mantra h3{
+    font-weight: 400;
+    font-size: 15px;
+    margin: 0;
+    margin-bottom: 5px;
+} */
+
+/* END OF SIDE-BOARD DASHBOARD */
+
+#monthly-metric {
+    margin: 3em 0;
+    width: 85%;
+    height: 105px;
+}
+
+#metric-header {
+    display: flex;
+    justify-content: space-between;
+    height: 40%;
+}
+
+#metric-header h1, #metric-header h2 {
+    margin: 0;
+    padding: 0;
+    font-size: 18px;
+    color: rgba(0, 0, 0, 0.57);
+    font-weight: 700;
+}
+
+#metric-header h2 {
+    font-size: 15px;
+}
+
+.metric-bar {
+    width: 10px;
+}
+
+#blue-bar {
+    background-color: var(--todo-col);
+}
+
+#cream-bar {
+    background-color: var(--progress-col);
+}
+
+#green-bar {
+    background-color: var(--complete-col);
+}
+
+#task-counts {
+    display: flex;
+    justify-content: space-between;
+    height: 60%;
+}
+
+.task-metric {
+    display: flex;
+    height: 100%;
+}
+
+.metric-value {
+    display: flex;
+    flex-direction: column;
+    margin-left: 15px;
+    justify-content: space-between;
+}
+
+.metric-value h1 {
+    margin: 0;
+    font-size: 2em;
+}
+
+.metric-value p {
+    margin: 0;
+    font-size: 0.8em;
+}
+
+#todays-data {
+    display: flex;
+    width: 85%;
+    height: 28%;
+    background-color: var(--header-col);
+    box-shadow: 0px 4px 9px -3px rgba(0, 0, 0, 0.1);
+}
+
+.current-time-weather, .current-date-quote {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+    padding: 10px;
+    padding-top: 15px;
+}
+
+.current-date-quote {
+    margin: 10px;
+    background: white;
+    padding-top: 5px;
+}
+
+.currentbox-title {
+    text-transform: uppercase;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    color: rgba(0, 0, 0, 0.57);
+    font-weight: 600;
+}
+
+.currentbox-info {
+    margin: 10px 0;
+    /* margin-top: 10px; */
+    margin-left: 10%;
+}
+
+.info-sub {
+    color: rgba(0, 0, 0, 0.57);
+    font-size: 0.6em;
+    padding-left: 0px;
+    font-weight: 600;
+}
+
+.current-time-weather img {
+    height: 50px;
+    width: 50px;
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+.currentbox-quote {
+    margin-top: 0px;
+    margin-bottom: 15px;
+    text-align: center;
+    font-size: 0.75em;
+}
+
+.currentbox-end {
+    color: rgba(0, 0, 0, 0.57);
+    font-weight: 600;
+    margin: 0;
+    font-size: 0.8em;
+}

@@ -1,0 +1,95 @@
+#home-main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 92vh;
+    width: 55%;
+    margin: 0 auto;
+}
+
+#carpediem-hero h1{
+    font-size: 4.5em;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    line-height: 1.1em;
+    font-weight: 900;
+}
+
+#carpediem-hero h3{
+    font-weight: 400;
+    font-size: 1.3em;
+    /* margin-top: 1.5em; */
+    margin-top: -1.5em;
+}
+
+#carpediem-hero {
+    border-right: 1px solid rgba(0, 0, 0, 0.57);
+    padding-right: 10%;    
+    justify-content: space-between;
+}
+
+
+.variable-hero, #carpediem-hero{
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    height: 50%;
+}
+
+.variable-hero {
+    margin-left: 5%;
+    width: 70%;
+}
+
+.form-hero {
+    height: 65%;
+}
+
+#about-hero h3 {
+    margin-bottom: 0px;
+    font-size: 1.5em;
+    font-weight: 800;
+}
+
+#about-hero p {
+    font-size: 1.3em;
+}
+
+#crop-image {
+    height: 179px;
+    width: 419px;
+    object-fit: none;
+    object-position: -34px -97px;
+}
+
+/* LOGIN */
+
+.carpehome-btns {
+    display: flex;
+    justify-content: space-between;
+}
+
+.home-btn {
+    font-weight: 700;
+    font-size: 1em;
+    padding: 0.5em 1em;
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: black;
+}
+
+a {
+    text-decoration: none;
+}
+
+#login-btn {
+    background: black;
+    color: white;
+}
+
+#signout-btn {
+    background: black;
+    color: white;
+}
+

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href=" {{url_for('static', filename = 'css/styles.css')}} " rel="stylesheet">
+    <link href=" {{url_for('static', filename = 'css/home.css')}} " rel="stylesheet">
+    <link href=" {{url_for('static', filename = 'css/main-nav.css')}} " rel="stylesheet">
+    <link href=" {{url_for('static', filename = 'css/kanban.css')}} " rel="stylesheet">
+    <link href=" {{url_for('static', filename = 'css/scrollbar.css')}} " rel="stylesheet">
+    <link href=" {{url_for('static', filename = 'css/popup-form.css')}} " rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename = 'img/apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename = 'img/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename = 'img/favicon-16x16.png') }}">
+    <link rel="manifest" href="{{ url_for('static', filename = 'img/site.webmanifest') }}">
+    <title>CARPE DIEM · KanBan</title>
+</head>
+<body>
+    <section id="modal">
+        <form id="newtask-form" action="{{ url_for('kanban', username=current_user.username) }}" method="post">
+            <div class="form-header">
+                <h2>New Task</h2>
+                <button id="closeform" type="button" onclick="hidePopup()" formaction="">X</button>
+            </div>
+            <textarea class="custom-fields text-field" name="task-details" placeholder="Task" rows="3"></textarea>
+            <section class="labelandfield">
+                <label for="task-duedate">Due Date</label>
+                <input class="custom-fields date-field" type="date" name="task-duedate" id="task-duedate" placeholder="Due Date">
+            </section>
+            <section class="labelandfield">
+                <label for="task-priority">Priority</label>
+                <select class="custom-fields select-field"  name="task-priority" id="task-priority">
+                    <option value=""></option>
+                    <option value="high">🔴 - High</option>
+                    <option value="medium">🟠 - Medium</option>
+                    <option value="low">🟢 - Low</option>
+                </select>
+            </section>
+            <input type="submit" value="ADD TASK">
+        </form>
+    </section>
+    <header id="main-header">
+        <div id="logo-header">
+            <a href="{{ url_for('home') }}"><img id="logo" src="{{ url_for('static', filename = 'img/infinity-logo.png') }}" alt="infinity-logo"></a>
+            <div id="username-display">
+                {% if current_user.is_authenticated %}
+                    <p>{{ current_user.username }}</p>
+                {% else %}
+                    <p>CARPE DIEM</p>
+                {% endif %}
+            </div>
+        </div>
+        <nav id="navbar">
+            <a href="{{ url_for('home') }}">home</a>
+            <a href="{{ url_for('logout') }}">logout</a>
+        </nav>
+    </header>
+    <main id="kanban-main">
+        <section id="side-board">
+            <header id="kb-board-header">
+                <h1><span>KANBAN</span><br><span>BOARD</span></h1>
+                <p>just do it.</p>
+            </header>
+            <section id="monthly-metric">
+                <section id="metric-header">
+                    <h1>{{ my_stats['date'] }}</h1>
+                    <h2>TOTAL&nbsp;&nbsp;&nbsp;&nbsp;{{ my_stats['total'] }}</h2>
+                </section>
+                <section id="task-counts">
+                    <div class="task-metric">
+                        <div class="metric-bar" id="blue-bar"></div>
+                        <article id="todo-count" class="metric-value">
+                            <h1>{{ my_stats['todo_no'] }}</h1>
+                            <p>To Do</p>
+                        </article>
+                    </div>
+                    <div class="task-metric">
+                        <div class="metric-bar" id="cream-bar"></div>
+                        <article id="progress-count" class="metric-value">
+                            <h1>{{ my_stats['inprogress_no'] }}</h1>
+                            <p>In Progress</p>
+                        </article>
+                    </div>
+                    <div class="task-metric">
+                        <div class="metric-bar" id="green-bar"></div>
+                        <article id="complete-count" class="metric-value">
+                            <h1>{{ my_stats['completed_no'] }}</h1>
+                            <p>Completed</p>
+                        </article>
+                    </div>
+                </section>
+            </section>
+        </section>
+        <section id="main-board">
+            <div id="todo-panel" class="kb-panel">
+                <header class="panel-header">
+                    <h2 class="panel-title">To Do 📌</h2>
+                    <button id="add-ticket-btn" onclick="openForm()" name="add_task_btn">+</button>
+                </header>
+                <section class="ticket-list">
+                    {% for task in my_board['todo_list'] %}
+                        <article id="{{ task.id }}" class="todo-ticket ticket">
+<!--                            <p>{{ string_id }}</p>-->
+                            <section class="ticket-status">
+                                <div class="due-date"><p>due {{ task.due_date }}</p></div>
+                                <div class="ticket-priority" style="background: {{ task.priority }} "></div>
+                            </section>
+                            <section class="ticket-task">
+                                <p>{{ task.desc }}</p>
+
+                            </section>
+                            <section class="ticket-details">
+                                <p>KANB-{{ task.id }}</p>
+                                <div class="ticket-btns">
+                                    <a href="{{ url_for('delete', task_id=task.id) }}">❌ </a>
+                                    <a href="{{ url_for('promote', task_id=task.id) }}">👉 </a>
+                                </div>
+                            </section>
+                        </article>
+                    {% endfor %}
+                </section>
+            </div>
+
+            <div id="inprogress-panel" class="kb-panel">
+                <section class="panel-header">
+                    <h2 class="panel-title">In Progress 🔨</h2>
+                </section>
+                <section class="ticket-list">
+                    {% for task in my_board['progress_list'] %}
+                        <article id="{{ task.id }}" class="inprogress-ticket ticket">
+                            <section class="ticket-status">
+                                <div class="due-date"><p>due {{ task.due_date }}</p></div>
+                                <div class="ticket-priority" style="background: {{ task.priority }} "></div>
+                            </section>
+                            <section class="ticket-task">
+                                <p>{{ task.desc }}</p>
+
+                            </section>
+                            <section class="ticket-details">
+                                <p>KANB-{{ task.id }}</p>
+                                <div class="ticket-btns">
+                                    <a href="{{ url_for('demote', task_id=task.id) }}">👈 </a>
+                                    <a href="{{ url_for('delete', task_id=task.id) }}">❌ </a>
+                                    <a href="{{ url_for('promote', task_id=task.id) }}">👉 </a>
+                                </div>
+                            </section>
+                        </article>
+                    {% endfor %}
+                </section>
+            </div>
+
+            <div id="complete-panel" class="kb-panel">
+                <section class="panel-header">
+                    <h2 class="panel-title">Completed ✅</h2>
+                </section>
+                <section class="ticket-list">
+                    {% for task in my_board['completed_list'] %}
+                        <article id="{{ task.id }}" class="complete-ticket ticket">
+                            <section class="ticket-status">
+                                <div class="due-date"><p>due {{ task.due_date }}</p></div>
+                                <div class="ticket-priority" style="background: {{ task.priority }} "></div>
+                            </section>
+                            <section class="ticket-task">
+                                <p>{{ task.desc }}</p>
+
+                            </section>
+                            <section class="ticket-details">
+                                <p>KANB-{{ task.id }}</p>
+                                <div class="ticket-btns">
+                                    <a href="{{ url_for('demote', task_id=task.id) }}">👈 </a>
+                                    <a href="{{ url_for('delete', task_id=task.id) }}">❌ </a>
+                                </div>
+                            </section>
+                        </article>
+                    {% endfor %}
+                </section>
+            </div>
+        </section>
+    </main>
+    <script src="{{url_for('static', filename = 'js/popup.js')}}"></script>
+</body>
+</html>

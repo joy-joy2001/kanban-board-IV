@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+:root{
+    --header-col: rgb(255, 249, 234);
+    --todo-col: rgba(160, 188, 194, 1);
+    --progress-col: rgba(255, 234, 181, 1);
+    --complete-col: rgba(218, 229, 208, 1);
+    --blue-fade: rgba(160, 188, 194, 0.36);
+    --cream-fade: rgba(254, 244, 220, 1);
+    --green-fade: rgba(218, 229, 208, 0.53);
+}
+
+.log-reg-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    width: 75%;
+    background: var(--header-col);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.log-reg-form h2 {
+    font-weight: 700;
+    margin: 5% 0 8% 0;
+}
+
+.field-container {
+    width: 75%;
+}
+
+label {
+    font-weight: 500;
+}
+
+.log-reg-form input {
+    width: 100%;
+    height: 30%;
+    padding: 5%;
+    margin-bottom: 0.5em;
+    border: 1px solid rgba(0, 0, 0, 0.25);
+}
+
+.log-reg-form input[type="submit"] {
+    cursor: pointer;
+    background: black;
+    color: white;
+    text-transform: uppercase;
+    padding: 0;
+    font-weight: 700;
+    margin-bottom: 5%;
+    height: 100%;
+}
+
+.log-reg-form p {
+    color: rgba(0, 0, 0, 0.37);
+}
+
+.log-reg-form p a {
+    cursor: pointer;
+    color: black;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.has_error {
+    border: 1px solid red;
+}
+
+.recaptcha-box {
+    margin-bottom: 1.2em
+}
