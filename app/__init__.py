@@ -32,5 +32,5 @@ from app import views
 views.login_manager.init_app(my_app)
 
 
-with app.app_context():
-    db.create_all()
+# with my_app.app_context():
+#     db.create_all()
