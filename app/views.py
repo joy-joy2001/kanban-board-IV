@@ -3,7 +3,7 @@ from flask_login import login_required, logout_user, login_user, current_user, L
 from werkzeug.security import check_password_hash, generate_password_hash
 import datetime as dt
 
-from app import app, User, Task, LoginForm, RegisterForm, db
+from app import my_app, User, Task, LoginForm, RegisterForm, db
 
 
 login_manager = LoginManager()
@@ -97,12 +97,12 @@ def promote_task():
 
 
 ##################################################### VIEWS HANDLER ####################################################
-@app.route("/")
+@my_app.route("/")
 def home():
         return render_template("index.html")
 
 
-@app.route("/kanban-board/<username>", methods=['GET', 'POST'])
+@my_app.route("/kanban-board/<username>", methods=['GET', 'POST'])
 @login_required
 def kanban(username):
     my_board = create_board()
@@ -113,7 +113,7 @@ def kanban(username):
     return render_template("kanban-board.html", my_board=my_board, my_stats=my_stats, username=current_user.username)
 
 
-@app.route("/login", methods=['GET', 'POST'])
+@my_app.route("/login", methods=['GET', 'POST'])
 def login():
     username_error = None
     password_error = None
@@ -135,7 +135,7 @@ def login():
                            password_error=password_error,)
 
 
-@app.route("/register", methods=['GET', 'POST'])
+@my_app.route("/register", methods=['GET', 'POST'])
 def register():
     register_form = RegisterForm()
     if register_form.validate_on_submit():
@@ -155,36 +155,36 @@ def register():
     return render_template("signup.html", register_form=register_form)
 
 
-@app.route("/promote", methods=["GET", "POST"])
+@my_app.route("/promote", methods=["GET", "POST"])
 def promote():
     promote_task()
     return redirect(url_for('kanban', username=current_user.username))
 
 
-@app.route("/demote", methods=["GET", "POST"])
+@my_app.route("/demote", methods=["GET", "POST"])
 def demote():
     demote_task()
     return redirect(url_for('kanban', username=current_user.username))
 
 
-@app.route("/delete", methods=["GET", "POST"])
+@my_app.route("/delete", methods=["GET", "POST"])
 def delete():
     delete_task()
     return redirect(url_for('kanban', username=current_user.username))
 
 
-@app.route("/logout")
+@my_app.route("/logout")
 @login_required
 def logout():
     logout_user()
     return redirect(url_for('home'))
 
 
-@app.errorhandler(401)
+@my_app.errorhandler(401)
 def unauthorised(e):
     return render_template('error_page.html', error=401), 401
 
 
-@app.errorhandler(404)
+@my_app.errorhandler(404)
 def unauthorised(e):
     return render_template('error_page.html', error=404), 404
