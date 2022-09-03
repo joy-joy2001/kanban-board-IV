@@ -13,7 +13,7 @@ load_dotenv()
 # Secret key is needed for cookies and session storage while the
 # 'track_modifications = false' will silence the red warning thing.
 my_app.secret_key = os.environ.get('APP_SECRET_KEY')
-my_app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('local_DATABASE_URL')
+my_app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL1', 'local_DATABASE_URL')
 my_app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 my_app.config['RECAPTCHA_PUBLIC_KEY'] = os.environ.get('RECAPTCHA_SITE_KEY')
 my_app.config['RECAPTCHA_PRIVATE_KEY'] = os.environ.get('RECAPTCHA_SECRET_KEY')
@@ -32,5 +32,5 @@ from app import views
 views.login_manager.init_app(my_app)
 
 
-# with my_app.app_context():
-#     db.create_all()
+with my_app.app_context():
+    db.create_all()
