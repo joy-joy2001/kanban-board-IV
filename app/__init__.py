@@ -20,7 +20,7 @@ my_app.config['RECAPTCHA_PRIVATE_KEY'] = os.environ.get('RECAPTCHA_SECRET_KEY')
 my_app.config['RECAPTCHA_OPTIONS'] = {'data-theme': 'dark'}
 
 # this will link the flask app to the database.
-db.init_app(my_app)
+
 
 
 ### from the python package named 'app', the 'views.py' model is being imported.
@@ -32,5 +32,6 @@ from app import views
 views.login_manager.init_app(my_app)
 
 
-# with my_app.app_context():
-#     db.create_all()
+with my_app.app_context():
+  db.init_app(my_app)
+#   db.create_all()
