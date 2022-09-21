@@ -1,6 +1,8 @@
 # carpe-diem
 A Kanban Board made with a Flask back-end and fornt-end vanilla HTML + CSS
 
+![Carpe Diem App Demo](carpediem-appdemo.gif)
+
 ## why though?
 I was first introduced to the idea of a kanban board during my work placement at Accenture. It was used daily at every team briefing; it was an extremely useful way of getting the team organised and served as a visual reminder of what tasks needed to get done. There were times where my individual board got excruciatingly long, so long in fact that some members in my team saw this list and were kind enough to offload some tasks - that's when I learnt the beauty of kanban boards. It's perfect in a collaborative environment as the team can see what everyone else does and provide insights if need be. Persoanlly, it also helped me to get miuch more organised, especially since I had a very bad habit of taking mental notes in my head but forgetting to do them a while after. With a task written out infront of you, especially with a due date creates urgency and prompts you to take action.
 
