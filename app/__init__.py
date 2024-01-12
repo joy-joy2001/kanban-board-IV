@@ -34,4 +34,4 @@ views.login_manager.init_app(my_app)
 
 with my_app.app_context():
   db.init_app(my_app)
-#   db.create_all()
+  db.create_all()
